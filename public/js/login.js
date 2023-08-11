@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
-  
+  console.log('hello')
     // Collect values from the login form
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
   
       if (response.ok) {
         // If successful, redirect the browser to the Home page
-        document.location.replace('/Home');
+        document.location.replace('/');
       } else {
         alert(response.statusText);
       }
@@ -37,7 +37,7 @@ const loginFormHandler = async (event) => {
       });
      console.log(response)
       if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/');
       } else {
         alert(response.statusText);
       }
@@ -47,3 +47,5 @@ const loginFormHandler = async (event) => {
   document
     .querySelector('.signup-form')
     .addEventListener('submit', signupFormHandler);
+    document.querySelector('.login-form')
+    .addEventListener('submit', loginFormHandler);

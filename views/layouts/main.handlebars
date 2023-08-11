@@ -30,7 +30,7 @@
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/Home">Home</a>
+        <a href="/">Home</a>
         <a href="/Dashboard">Dashboard</a> |
         <button class="no-button" id="logout">logout</button>
         
@@ -43,7 +43,11 @@
       <!-- Render the sub layout -->
       {{{ body }}}
     </main>
-<script type ='text/javascript' src="/js/login.js"></script>
+{{#if logged_in}}
+
+<script src="/js/logout.js">
+{{/if}}
+</script>
 </body>
 
 </html>
