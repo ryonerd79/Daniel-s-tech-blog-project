@@ -23,6 +23,13 @@ Post.init(
         allowNull: false,
     },
     
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'user',
+          key: 'id'
+        }
+    }
     
 }, 
 
@@ -30,7 +37,7 @@ Post.init(
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'Post',
+  modelName: 'post',
 
   })
 

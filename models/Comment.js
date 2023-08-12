@@ -23,7 +23,7 @@ class Comment extends Model {}
             timestamps: false,
             freezeTableName: true,
             underscored: true,
-            modelName: 'Post',
+            modelName: 'comment',
           
             }
     )

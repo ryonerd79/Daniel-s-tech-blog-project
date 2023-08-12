@@ -61,18 +61,20 @@ router.get('/comment', (req, res) => {
   res.render("comment")
 })
 
-router.get('/signin', (req, res) => {
+// router.get('/signin', (req, res) => {
     
-    if (req.session.logged_in) {
-      res.redirect('/comment');
-      return;
-    }
+//     if (req.session.logged_in) {
+//       res.redirect('/comment');
+//       return;
+//     }
   
-    res.render('signin');
-  });
+//     res.render('signin');
+//   });
 
   router.get('/dashboard', (req, res) => {
-    res.render('dashboard');
+    res.render('dashboard', {
+      logged_in: req.session.logged_in,
+    }) 
     
   })
 
