@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
         }
       ]
     })
-    
+
 
     const posts = postData.map((post) => post.get({ plain: true }));
     console.log(posts[0])
@@ -47,7 +47,7 @@ router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findOne({
       where: {
-          id: req.params.id
+        id: req.params.id
       },
       attributes: [
         'id', 'title', 'content', 'created_at'
@@ -69,9 +69,9 @@ router.get('/post/:id', async (req, res) => {
         }
       ]
     })
-    
 
-    const post = postData.get({plain: true });
+
+    const post = postData.get({ plain: true });
     console.log(post)
     res.render("post_detail", {
       post,
@@ -132,11 +132,48 @@ router.get('/comment', (req, res) => {
 //     res.render('signin');
 //   });
 
-router.get('/dashboard', (req, res) => {
-  res.render('dashboard', {
-    logged_in: req.session.logged_in,
-  })
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      where: {
+        user_id: req.session.user_id
+      },
+      attributes: [
+        'id', 'title', 'content', 'created_at'
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'id', 'body', 'created_at'
+          ],
+          include: {
+            model: User,
+            attributes: ['name']
+          }
+        },
+        {
+          model: User,
+          attributes: ['name']
+        }
+      ]
+    })
+
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.render('dashboard', {
+      logged_in: req.session.logged_in,
+      posts
+    })
+
+  } catch (error) {
+
+  }
 
 })
-
+router.get('/dashboard/new', withAuth, (req, res) => {
+  res.render("new_post", {
+    logged_in: req.session.logged_in,
+  })
+}) 
 module.exports = router;
