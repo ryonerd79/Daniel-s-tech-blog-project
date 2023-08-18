@@ -176,4 +176,47 @@ router.get('/dashboard/new', withAuth, (req, res) => {
     logged_in: req.session.logged_in,
   })
 }) 
+
+router.get('/comment-routes/:id', async (req, res) => {
+  try {
+    const postData = await Post.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id', 'title', 'content', 'created_at'
+      ],
+      include: [
+        {
+          model: Comment,
+          attributes: [
+            'id', 'body', 'created_at'
+          ],
+          include: {
+            model: User,
+            attributes: ['name']
+          }
+        },
+        {
+          model: User,
+          attributes: ['name']
+        }
+      ]
+    })
+
+
+    const post = postData.get({ plain: true });
+    console.log(post)
+    res.render("post-comment", {
+      post,
+      logged_in: req.session.logged_in,
+    });
+  }
+  catch (error) {
+    console.log(error)
+
+    res.status(500).json(error);
+  }
+})
+
 module.exports = router;

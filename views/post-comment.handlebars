@@ -1,19 +1,21 @@
 <div class="card mb-3 border-info">
         <div class="card-body">
-            <h5 class="card-title mb-0"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+            <h5 class="card-title mb-0">{{post.title}}</h5>
             <p class="card-text mb-2"><small class="text-muted">By {{post.user.name}} on {{format_date post.created_at}}</small></p>
             <p class="card-text">{{post.content}}</p>
         <div class="col-md-4">
-    <form class="form comment-form">
-      
+        <form class="form new-comment-form">
+          <input type="hidden" name="post-id" value="{{ post.id }}" />
       <div class="form-group">
-        <label for="comment">comment</label>
-        <textarea class="form-input" id="comment" name="content"></textarea>
+        <label for="post-comment">comment:</label>
+        <textarea class="form-input" name="post-comment" ></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </form>
-  </div>
+      </div>
+</div>
+</div>
 
-  <script src="/js/comment.js"></script>
+<script src="/js/comment.js"></script>
