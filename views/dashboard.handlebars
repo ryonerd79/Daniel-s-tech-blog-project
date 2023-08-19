@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col-auto">
-      <h2>Welcome, {{ user.displayName }}!</h2>
+      <h2>Welcome, {{ username }}!</h2>
     </div>
   </div>
   <a class="btn  btn-info" href="/dashboard/new">Add new post</a>
@@ -22,7 +22,7 @@
         <p class="card-text"><small class="text-muted">{{format_date created_at}}</small></p>
         <div class="">
           <a href="/post/edit/{{id}}" id="updateBtn" class=" btn btn-sm btn-success" data-id="{{id}}">UPDATE</a>
-          <button id="deleteBtn" class=" btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
+          <button class="deleteBtn btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
         </div>
       </div>
     </div>

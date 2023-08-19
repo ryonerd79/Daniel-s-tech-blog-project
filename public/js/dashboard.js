@@ -1,12 +1,12 @@
 
   
   const delButton = async (event) => {
-    
+  
 
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/posts/${id}`, {
+      const response = await fetch(`/api/post/${event.target.dataset.id}`, {
         method: 'DELETE',
       });
   
@@ -20,4 +20,7 @@
   
   
 
-    document.querySelectorAll(".deleteBtn").addEventListener("click", delButton);
+    document.querySelectorAll(".deleteBtn").forEach((el) => {
+      el.addEventListener("click", delButton);
+      
+    });
