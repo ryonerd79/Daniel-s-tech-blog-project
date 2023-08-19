@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
   
     if ( title  && content) {
       const response = await fetch(`/api/post`, {
-        method: 'POST',      
+        method: 'PUT',      
         body: JSON.stringify({ title: title, content: content }),
         headers: { 
           'Content-Type': 'application/json',
@@ -23,6 +23,6 @@ const newFormHandler = async (event) => {
     
     
   document
-      .querySelector('.update-post-form')
+      .querySelector('.edit-post-form')
       .addEventListener('submit', newFormHandler);
    
