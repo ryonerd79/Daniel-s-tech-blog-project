@@ -1,13 +1,11 @@
 <div class="card mb-3 border-info">
-        <div class="card-body">
-            <h5 class="card-title mb-0"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
-            <p class="card-text mb-2"><small class="text-muted">By {{post.user.name}} on {{format_date post.created_at}}</small></p>
-            <p class="card-text">{{post.content}}</p>
-        <div class="col-md-4">
-        <button class= "updateBtn" class=" btn-sm btn-success" data-id="{{id}}">UPDATE</button>
-        <button class= "deleteBtn" class=" btn-sm btn-danger" data-id="{{id}}">DELETE</button>
-      </div>
-           
+  <div class="card-body">
+    <h5 class="card-title mb-0"><a href="/post/{{post.id}}">{{post.title}}</a></h5>
+    <p class="card-text mb-2"><small class="text-muted">By {{post.user.name}} on {{format_date post.created_at}}</small>
+    </p>
+    <p class="card-text">{{post.content}}</p>
+    
 
-        </div>
-    </div>
+
+  </div>
+</div>

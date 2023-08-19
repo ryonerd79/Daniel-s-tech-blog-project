@@ -176,6 +176,32 @@ router.get('/dashboard/new', withAuth, (req, res) => {
     logged_in: req.session.logged_in,
   })
 }) 
+router.get('/post/edit/:id', async (req, res) => {
+  try {
+    const postData = await Post.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id', 'title', 'content', 'created_at'
+      ],
+      
+    })
+
+
+    const post = postData.get({ plain: true });
+    res.render("edit-post", {
+      post,
+      logged_in: req.session.logged_in,
+    });
+  }
+  catch (error) {
+    console.log(error)
+
+    res.status(500).json(error);
+  }
+  
+})
 
 router.get('/comment-routes/:id', async (req, res) => {
   try {

@@ -35,11 +35,19 @@ const loginFormHandler = async (event) => {
         body: JSON.stringify({ name, password }),
         headers: { 'Content-Type': 'application/json' },
       });
-     console.log(response)
+     
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        
+        const data = await response.json();
+        if(data.message) {
+          const msgEl = document.querySelector('#message');
+          msgEl.setAttribute('class', 'alert alert-danger')
+          msgEl.innerHTML = data.message
+        } else {
+          alert(response.statusText);
+        }
       }
     }
   };

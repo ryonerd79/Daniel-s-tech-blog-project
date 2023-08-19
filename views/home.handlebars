@@ -7,9 +7,9 @@
             <p class="card-text mb-2"><small class="text-muted">By {{user.name}}</small></p>
             <p class="card-text">{{content}}</p>
             <p class="card-text"><small class="text-muted">{{format_date created_at}}</small></p>
-{{#each post.comments as |comment| }}
-<p class="xs">{{ comment.body }}</p>
-{{/each}}
+            {{#each post.comments as |comment| }}
+            <p class="xs">{{ comment.body }}</p>
+            {{/each}}
         </div>
     </div>
     {{/each}}
