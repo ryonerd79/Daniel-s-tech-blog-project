@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Comment, User, Post } = require('../models');
 const withAuth = require('../utils/auth');
 
-//router.get('/', async)
+
 
 router.get('/', async (req, res) => {
   try {
@@ -86,7 +86,6 @@ router.get('/post/:id', async (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect('/');
     return;
@@ -121,16 +120,6 @@ router.get('/signin', (req, res) => {
 router.get('/comment', (req, res) => {
   res.render("comment")
 })
-
-// router.get('/signin', (req, res) => {
-
-//     if (req.session.logged_in) {
-//       res.redirect('/comment');
-//       return;
-//     }
-
-//     res.render('signin');
-//   });
 
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
