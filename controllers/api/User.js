@@ -3,15 +3,15 @@ const { User } = require('../../models');
 
 router.post('/', async (req, res) => {
 try { 
-  const userData = await User.create(req.body.name);
+  const newUser = await User.create(req.body.name);
   
   
   req.session.save(() => {
-    req.session.user_id = userData.id;
-    req.session.username = userData.name;
+    req.session.user_id = newUserData.id;
+    req.session.username = newUserData.name;
     req.session.logged_in = true;
 
-    res.status(200).json(userData);
+    res.status(200).json(newUser);
   });
 } catch (err) {
 console.log(err)
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
       const userExists = await User.findOne({name: req.body.name});
       if(userExists) {
           return res.status(400).json({message:"User exists"})
-      }
+      } 
       const userData = await User.create(req.body);
   
       req.session.save(() => {
